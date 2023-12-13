@@ -1,4 +1,5 @@
-# React + Vite
+# React + V![image](https://github.com/dibborah/todo-list-app-using-useReducer-Hook/assets/90625406/1545d324-c944-4f29-b98b-ce0f4e2580d2)
+ite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
