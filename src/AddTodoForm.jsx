@@ -2,13 +2,18 @@
 // ".js" extension use nhi kar skte
 
 import { useState } from "react";
+import { useTodoContext } from "./contexts/TodosProvider";
+// import { useContext } from "react";
+// import { TodoContext } from "./App";
 
-const AddTodoForm = ({dispatch}) => {
-  const [title,setTitle] = useState("")
+const AddTodoForm = () => {
+  const [ title, setTitle ] = useState("");
+  // const { dispatch } = useContext(TodoContext);
+  const { addNewTodo } = useTodoContext();
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(title);
-    if(title.trim().length===0){
+    if (title.trim().length === 0) {
       alert("Please enter something before submiting it!!!")
     }
     const newTodo = {
@@ -16,12 +21,9 @@ const AddTodoForm = ({dispatch}) => {
       completed: false,
       id: crypto.randomUUID(),
     }
-    dispatch({
-      type:"ADD_TODO",
-      payload: {// In payload mostly data is passed as an object while creating real-world applications, so I am passing data as an object format which is not at all necessary but is useful
-        newTodo: newTodo
-      }
-    })
+
+    addNewTodo(newTodo);
+   
     setTitle("");
     // console.log(newTodo);
   }
@@ -32,7 +34,7 @@ const AddTodoForm = ({dispatch}) => {
         name="title"
         id="title"
         value={title}
-        onChange={(e)=>setTitle(e.target.value)}
+        onChange={(e) => setTitle(e.target.value)}
       />
       <button type="submit">Add Todo</button>
     </form>
